@@ -1,0 +1,25 @@
+/* intro */
+#intro{position:fixed;inset:0;z-index:1000;animation:introfail .01s 8s forwards}
+@keyframes introfail{to{visibility:hidden;pointer-events:none}}
+.i-red{position:absolute;inset:0;background:var(--red)}
+.i-paper{position:absolute;inset:0;background-color:var(--paper);display:flex;flex-direction:column;justify-content:space-between;padding:clamp(16px,3vw,32px) var(--gut);overflow:hidden;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
+.i-center{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.i-script{font:italic 500 clamp(1.2rem,3vw,2rem) var(--serif);color:var(--ink)}
+.i-word{font:800 clamp(3.2rem,15vw,13rem)/.9 var(--display);font-stretch:88%;letter-spacing:-.05em;color:var(--red);text-transform:lowercase}
+.i-badge{position:absolute;right:max(0px,calc(50% - 44vw));top:-6px;width:clamp(64px,10vw,110px)}
+.i-bottom{display:flex;align-items:flex-end;gap:16px 28px;flex-wrap:wrap}
+.i-count{font:800 clamp(2.6rem,7vw,5.5rem)/.8 var(--display);letter-spacing:-.05em;color:var(--red);font-variant-numeric:tabular-nums}
+.i-count small{font-size:.4em;margin-left:4px}
+.i-bar{flex:1;min-width:120px;height:3px;background:var(--line);align-self:center}
+.i-bar i{display:block;height:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0)}
+.skip{font:500 12px var(--mono);padding:7px 13px;border:1.5px solid var(--ink);border-radius:99px;transition:background .25s,color .25s}
+.skip:hover{background:var(--ink);color:var(--paper)}
+.pre,.i-word .ch{opacity:0}
+
+/* cursor */
+#cursor{position:fixed;left:0;top:0;z-index:900;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--red);pointer-events:none;opacity:0;display:grid;place-items:center;
+  font:600 12px var(--mono);color:var(--onred);transition:width .3s cubic-bezier(.3,1.5,.5,1),height .3s cubic-bezier(.3,1.5,.5,1),margin .3s cubic-bezier(.3,1.5,.5,1),background .25s}
+#cursor.link{width:42px;height:42px;margin:-21px 0 0 -21px;background:color-mix(in srgb,var(--red) 38%,transparent)}
+#cursor.view{width:92px;height:92px;margin:-46px 0 0 -46px}
+@media not all and (hover:hover) and (pointer:fine){#cursor{display:none}}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alfredbateman.github.io/reject-the-null/sitemap.xml

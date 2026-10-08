@@ -1,0 +1,19 @@
+/* Layout: a slide deck scrolled vertically. Beige grid paper, giant lowercase red titles, tiny mono meta in the corners,
+   one recurring mark (the red dot badge). Photos in the references become halftone and SVG diagrams. */
+:root{
+  --paper:#E8E4D8; --paper2:#DDD8C9; --card:#F1EDE2; --ink:#1C1B17; --muted:#625E52;
+  --red:#CC2D15; --red-text:#BC2913; --onred:#F7F3E8; --line:rgba(28,27,23,.2); --grid:rgba(28,27,23,.07);
+  --h0:#D9D4C5; --h1:#EEB5A6; --h2:#E4826B; --h3:#D4503A; --h4:#A92411;
+  --display:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:clamp(16px,4vw,48px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#12150E; --paper2:#1A1F14; --card:#1A1F14; --ink:#EDE9DC; --muted:#A3A092;
+  --red:#FF5C3D; --red-text:#FF5C3D; --onred:#12150E; --line:rgba(237,233,220,.22); --grid:rgba(237,233,220,.05);
+  --h0:#222819; --h1:#5B2B20; --h2:#8F3A2A; --h3:#D24B33; --h4:#FF6F52; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12150E; --paper2:#1A1F14; --card:#1A1F14; --ink:#EDE9DC; --muted:#A3A092;
+  --red:#FF5C3D; --red-text:#FF5C3D; --onred:#12150E; --line:rgba(237,233,220,.22); --grid:rgba(237,233,220,.05);
+  --h0:#222819; --h1:#5B2B20; --h2:#8F3A2A; --h3:#D24B33; --h4:#FF6F52; color-scheme:dark}
