@@ -11,4 +11,5 @@ Ishan Sharma's portfolio: a static, no-build site animated with anime.js.
 - `.github/workflows/pages.yml` – deploys to GitHub Pages
 
 **Data refresh:** the workflow runs daily (03:17 UTC), on push to `main`, and manually; it re-fetches GitHub data before each deploy.
+
 **Local preview:** `python3 -m http.server 8000`
