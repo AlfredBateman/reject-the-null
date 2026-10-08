@@ -1,4 +1,4 @@
-import {$,renderStats,renderGraph,renderLangs,renderRepos,renderEvents} from './render.js';
+import {$,FINE,renderStats,renderGraph,renderLangs,renderRepos,renderEvents} from './render.js';
 
 /* Loads the build-time snapshot (scripts/fetch-github.mjs). No token, no numbers made up here. */
 export async function github(){
@@ -43,7 +43,9 @@ function analyse(days){
   };
 }
 
+/* mouse only; touch taps go through js/ui.js */
 function tooltip(){
+  if(!FINE)return;
   const tt=$('#tt');
   document.addEventListener('pointermove',e=>{
     const c=e.target.closest&&e.target.closest('.cell');

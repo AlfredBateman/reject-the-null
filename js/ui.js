@@ -29,7 +29,8 @@ copy.addEventListener('click',()=>{
   $('#theme').addEventListener('click',()=>{const n=eff()==='dark'?'light':'dark';root.dataset.theme=n;try{localStorage.setItem('iv-theme',n)}catch(_){}sync()});
 })();
 
-/* pointer-lit rim and tilt */
+/* pointer-lit rim and tilt (mouse only) */
+if(FINE){
 document.addEventListener('pointermove',e=>{
   const l=e.target.closest&&e.target.closest('.lit');if(!l)return;
   const r=l.getBoundingClientRect();
@@ -40,6 +41,23 @@ document.addEventListener('pointermove',e=>{
   }
 },{passive:true});
 $$('.shot').forEach(s=>s.addEventListener('pointerleave',()=>{s.style.transform=''}));
+}
+
+/* touch: tap a skill tile or a heatmap cell for its tooltip, tap anywhere else (or scroll) to close it */
+if(!FINE){
+  const tt=$('#tt'),hide=()=>{tt.style.opacity=0};
+  $('#stack .script').textContent='tap a tile for where I used it';
+  /* pointer events, not click: iOS sends no click for taps on plain elements; a pan ends in pointercancel, not pointerup */
+  document.addEventListener('pointerdown',e=>{if(!e.target.closest('.tile,.cell'))hide()});
+  document.addEventListener('pointerup',e=>{
+    const t=e.target.closest('.tile,.cell');if(!t)return;
+    tt.textContent=t.dataset.tip||t.dataset.t;tt.classList.toggle('wrap',!!t.dataset.tip);tt.style.opacity=1;
+    const r=t.getBoundingClientRect(),w=tt.offsetWidth,h=tt.offsetHeight,x=Math.min(Math.max(r.left+r.width/2-w/2,8),innerWidth-w-8);
+    let y=r.top-h-8;if(y<$('.nav').getBoundingClientRect().bottom+4)y=r.bottom+8;
+    tt.style.transform='translate('+x+'px,'+y+'px)';
+  });
+  document.addEventListener('scroll',hide,{passive:true,capture:true});
+}
 
 /* scroll progress */
 const bar=$('#progress');

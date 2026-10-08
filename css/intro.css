@@ -2,7 +2,8 @@
 #intro{position:fixed;inset:0;z-index:1000;animation:introfail .01s 8s forwards}
 @keyframes introfail{to{visibility:hidden;pointer-events:none}}
 .i-red{position:absolute;inset:0;background:var(--red)}
-.i-paper{position:absolute;inset:0;background-color:var(--paper);display:flex;flex-direction:column;justify-content:space-between;padding:clamp(16px,3vw,32px) var(--gut);overflow:hidden;
+.i-paper{position:absolute;inset:0;background-color:var(--paper);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;
+  padding:max(clamp(16px,3vw,32px),env(safe-area-inset-top,0px)) max(var(--gut),env(safe-area-inset-right,0px)) max(clamp(16px,3vw,32px),env(safe-area-inset-bottom,0px)) max(var(--gut),env(safe-area-inset-left,0px));
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
 .i-center{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
 .i-script{font:italic 500 clamp(1.2rem,3vw,2rem) var(--serif);color:var(--ink)}
@@ -14,7 +15,7 @@
 .i-bar{flex:1;min-width:120px;height:3px;background:var(--line);align-self:center}
 .i-bar i{display:block;height:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0)}
 .skip{font:500 12px var(--mono);padding:7px 13px;border:1.5px solid var(--ink);border-radius:99px;transition:background .25s,color .25s}
-.skip:hover{background:var(--ink);color:var(--paper)}
+@media(hover:hover) and (pointer:fine){.skip:hover{background:var(--ink);color:var(--paper)}}
 .pre,.i-word .ch{opacity:0}
 
 /* cursor */

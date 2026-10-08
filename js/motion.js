@@ -46,7 +46,13 @@ function onView(el,fn,th){const o=new IntersectionObserver(es=>{if(es[0].isInter
 if(!RM&&$('#gstats')&&$('.cell')){
   onView($('#gstats'),()=>$$('[data-count]').forEach(b=>{const v=+b.dataset.count,o={n:0};
     anime({targets:o,n:v,round:1,duration:1600,easing:'easeOutExpo',update:()=>{b.textContent=o.n.toLocaleString('en-US')}})}));
-  onView($('#cells'),()=>anime({targets:'.cell',scale:[0,1],opacity:[0,1],duration:500,easing:'easeOutBack',delay:(el,i)=>Math.hypot(Math.floor(i/7)-26,(i%7-3)*2.2)*16}),.2);
+  /* only the cells visible inside the scroll box ripple (on phones that is the last ~13 weeks), centred on what is visible */
+  onView($('#cells'),()=>{
+    const box=$('.hm-scroll').getBoundingClientRect(),vis=$$('.cell').map((el,i)=>[el,i]).filter(([el])=>{const b=el.getBoundingClientRect();return b.right>box.left&&b.left<box.right});
+    if(!vis.length)return;
+    const c=(Math.floor(vis[0][1]/7)+Math.floor(vis.at(-1)[1]/7))/2;
+    anime({targets:vis.map(v=>v[0]),scale:[0,1],opacity:[0,1],duration:500,easing:'easeOutBack',delay:(el,j)=>{const i=vis[j][1];return Math.hypot(Math.floor(i/7)-c,(i%7-3)*2.2)*16}});
+  },.2);
 }
 
 /* marquee: scroll speeds it up, hover pauses it */
@@ -58,8 +64,11 @@ if(!RM){
   const measure=()=>tracks.forEach(t=>{t.w=t.el.firstElementChild.getBoundingClientRect().width;if(t.dir>0&&t.x===0)t.x=-t.w});
   measure();addEventListener('resize',measure);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(measure);
   let lastY=scrollY;
-  let boost=0;
-  (function tick(){
+  let boost=0,vis=false,running=false;
+  /* the loop only runs while the marquee is on screen (rAF itself already stops in hidden tabs) */
+  new IntersectionObserver(([e])=>{vis=e.isIntersecting;if(vis&&!running){running=true;lastY=scrollY;requestAnimationFrame(tick)}}).observe($('.mq'));
+  function tick(){
+    if(!vis){running=false;return}
     const dy=Math.abs(scrollY-lastY);lastY=scrollY;boost+=(Math.min(dy*.5,14)-boost)*.12;
     tracks.forEach(t=>{
       t.k+=((t.hover?0:1)-t.k)*.08;
@@ -68,6 +77,6 @@ if(!RM){
       t.el.style.transform='translate3d('+t.x.toFixed(1)+'px,0,0)';
     });
     requestAnimationFrame(tick);
-  })();
+  }
 }
 }
