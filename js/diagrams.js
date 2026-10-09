@@ -99,4 +99,29 @@ function canvasLint(){
   proj.addEventListener('pointerleave',()=>{if(spin)spin.pause()});
 }
 
-export function diagrams(){agentProbe();stockPilot();investorLens();canvasLint()}
+/* "why" section: bell curve y=exp(-x²/2); the tail past the one-sided 5% point (1.645) is shaded from the same function */
+const M=176,S=52,BASE=214,H=170,Z=1.645,X=x=>(M+x*S).toFixed(1),Y=x=>(BASE-H*Math.exp(-x*x/2)).toFixed(1);
+const curve=(a,b,n)=>{let p='';for(let i=0;i<=n;i++){const x=a+(b-a)*i/n;p+=(i?'L':'')+X(x)+' '+Y(x)}return p};
+const tail=b=>'M'+X(Z)+' '+BASE+'L'+curve(Z,b,40)+'L'+X(b)+' '+BASE+'Z';
+function why(){
+  const el=$('#whyd');
+  el.innerHTML='<path class="acc" d="'+tail(3.2)+'"/>'
+   +'<path class="ln" d="M'+curve(-3.2,3.2,128)+'"/>'
+   +line('ln',8,BASE,392,BASE)
+   +'<line class="ln" x1="'+X(Z)+'" y1="30" x2="'+X(Z)+'" y2="'+BASE+'" style="stroke-dasharray:5 4"/>'
+   +t(268,40,'p &lt; 0.05')
+   +t(268,150,'reject the null','acc',B(13))
+   +t(166,204,'null: nothing changed','',MID)
+   +'<circle class="ln" cx="280" cy="204" r="4.5" style="fill:var(--card);opacity:1"/>'
+   +line('ln',280,211,280,226)+t(280,242,'my projects','',MID);
+  /* hover only: redraw the tail from the dashed line outwards, drop the dot into it */
+  if(!HAS||RM)return;
+  const tp=$('path.acc',el),dt=$('circle',el),o={b:3.2};
+  el.addEventListener('pointerenter',()=>{
+    anime.remove([o,dt]);o.b=Z;
+    anime({targets:o,b:3.2,duration:700,easing:'easeOutQuad',update:()=>tp.setAttribute('d',tail(o.b))});
+    anime({targets:dt,cy:[100,204],duration:900,delay:250,easing:'easeOutBounce'});
+  });
+}
+
+export function diagrams(){agentProbe();stockPilot();investorLens();canvasLint();why()}
