@@ -205,7 +205,7 @@
 .clink .ic{flex:none;width:34px;height:34px;border-radius:9px;border:1.5px solid currentColor;display:grid;place-items:center;font:600 12px var(--mono)}
 .clink .tx2{flex:1;min-width:0;overflow-wrap:anywhere;font-weight:500}
 .clink .go{font:500 12px var(--mono);display:inline-block;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
-@media(hover:hover) and (pointer:fine){.clink:hover .go{transform:translateX(6px)}}
+@media(hover:hover) and (pointer:fine){.clink:hover .go{transform:translateX(6px)}.clink.dl:hover .go{transform:translateY(3px)}}
 @media(max-width:820px){.contact-grid{grid-template-columns:minmax(0,1fr)}}
 .foot{padding-block:0 calc(34px + env(safe-area-inset-bottom,0px))}
 .foot .meta{border-top:1px solid var(--line);padding-top:22px}

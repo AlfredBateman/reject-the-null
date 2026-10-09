@@ -67,7 +67,8 @@ main{overflow-x:clip}
 .btn.solid::before{background:var(--ink)}
 @media(hover:hover) and (pointer:fine){.btn.solid:hover{color:var(--paper);border-color:var(--ink)}}
 .btn .arr{display:inline-block;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
-@media(hover:hover) and (pointer:fine){.btn:hover .arr{transform:translate(3px,-3px) rotate(8deg)}}
+@media(hover:hover) and (pointer:fine){.btn:hover .arr{transform:translate(3px,-3px) rotate(8deg)}.btn.dl:hover .arr{transform:translateY(3px)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .btn.sm{padding:9px 16px;font-size:13px}
 
 /* pointer-lit rim */

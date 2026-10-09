@@ -8,6 +8,7 @@ Ishan Sharma's portfolio: a static, no-build site animated with anime.js.
 - `assets/` – favicon, OG image, vendored `anime.min.js`
 - `data/` – `github.json`, generated GitHub contribution data
 - `scripts/` – `fetch-github.mjs`, writes `data/github.json`
+- Resume: `assets/Ishan-Sharma-Resume.pdf` (the only tracked PDF). Replace it there when updating.
 - `.github/workflows/pages.yml` – deploys to GitHub Pages
 
 **Data refresh:** the workflow runs daily (03:17 UTC), on push to `main`, and manually; it re-fetches GitHub data before each deploy.

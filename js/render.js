@@ -33,7 +33,8 @@ $('#stackbox').innerHTML=stack.map(g=>'<div class="group"><h3 class="sub">'+g[0]
   '<div class="tile" data-tip="'+t[2]+'"><div class="box">'+t[1]+'</div><div class="name">'+t[0]+'</div></div>').join('')+'</div></div>').join('');
 $('#pills').innerHTML=concepts.map(t=>'<span class="pill">'+t+'</span>').join('');
 $('#connect').innerHTML=links.map(l=>'<a href="'+l[3]+'" target="_blank" rel="noopener" class="clink lit" data-magnet><span class="ic">'+l[0]+'</span><span class="tx2">'+l[2]+'</span><span class="go">&#8599;</span></a>').join('')
-  +'<button type="button" id="copy" class="clink lit" data-magnet><span class="ic">@</span><span class="tx2">'+MAIL.replace('@','@<wbr>')+'</span><span class="go" aria-live="polite">copy</span></button>';
+  +'<button type="button" id="copy" class="clink lit" data-magnet><span class="ic">@</span><span class="tx2">'+MAIL.replace('@','@<wbr>')+'</span><span class="go" aria-live="polite">copy</span></button>'
+  +'<a href="assets/Ishan-Sharma-Resume.pdf" download="Ishan-Sharma-Resume.pdf" type="application/pdf" class="clink dl lit" data-magnet><span class="ic">cv</span><span class="tx2">resume (pdf)</span><span class="go" aria-hidden="true">&#8595;</span></a>';
 }
 
 /* ---------- github section (data comes from js/github.js) ---------- */
