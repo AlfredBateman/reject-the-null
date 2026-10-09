@@ -23,7 +23,7 @@ export const whyItMatters={
 export const links=[['gh','github','@AlfredBateman','https://github.com/AlfredBateman'],['in','linkedin','/in/ishansharma1247','https://linkedin.com/in/ishansharma1247']];
 export const MAIL=['ishan.sh.1148','gmail.com'].join('@');
 
-export const badgeSVG='<g class="spin"><text class="bt"><textPath href="#circ" textLength="290" lengthAdjust="spacing">ishan sharma &#8226; cse student &#8226; class of 2027 &#8226; </textPath></text></g><circle class="bd" cx="60" cy="60" r="21"/>';
+export const badgeSVG='<circle class="bdbg" cx="60" cy="60" r="57"/><g class="spin"><text class="bt"><textPath href="#circ" textLength="290" lengthAdjust="spacing">ishan sharma &#8226; cse student &#8226; batch of 2027 &#8226; </textPath></text></g><circle class="bd" cx="60" cy="60" r="21"/>';
 
 export const mqA=['python','typescript','react','next.js','fastapi','node.js','postgres','docker','github actions','git'];
 export const mqB=['backend','full-stack','testing','ci/cd','llm agents','statistics','system design'];

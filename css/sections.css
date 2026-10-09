@@ -38,6 +38,7 @@
 
 /* badge */
 .badge{display:block;overflow:visible}
+.badge .bdbg{fill:var(--paper)}
 .badge .spin{transform-origin:60px 60px;animation:spin 14s linear infinite}
 .badge .bt{font:500 9.4px var(--mono);fill:var(--ink);letter-spacing:.05em}
 .badge .bd{fill:var(--red);transition:transform .45s cubic-bezier(.3,1.6,.5,1);transform-origin:60px 60px}
