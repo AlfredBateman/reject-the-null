@@ -1,4 +1,5 @@
 import {stack,concepts,courses,edu,whyItMatters,links,MAIL,badgeSVG,mqA,mqB} from './content.js';
+import {ICONS} from './icons.js';
 
 export const $=(s,r)=>(r||document).querySelector(s), $$=(s,r)=>[...(r||document).querySelectorAll(s)];
 export const anime=window.anime;
@@ -6,6 +7,9 @@ export const HAS=typeof anime!=='undefined';
 export const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 export const FINE=matchMedia('(hover:hover) and (pointer:fine)').matches;
 export const root=document.documentElement;
+
+/* Phosphor icon, regular and fill stacked in one box (the tile hover cross-fades them) */
+export const icon=n=>'<span class="ico" aria-hidden="true">'+ICONS[n].map((d,i)=>'<svg class="'+(i?'i-fill':'i-reg')+'" viewBox="0 0 256 256" fill="currentColor" focusable="false">'+d+'</svg>').join('')+'</span>';
 
 export function split(el){
   if(el.classList.contains('is-split'))return;
@@ -30,7 +34,7 @@ $$('[data-split]').forEach(split);
 $('#chips').innerHTML=courses.map(c=>'<span class="chip">'+c+'</span>').join('');
 $('#xp').innerHTML=edu.map(j=>'<div class="row" data-reveal><div><h3>'+j[0]+'</h3><span class="org">'+j[1]+'</span></div><p class="what">'+j[2]+'</p>'+(j[3]?'<span class="when">'+j[3]+'</span>':'')+'</div>').join('');
 $('#stackbox').innerHTML=stack.map(g=>'<div class="group"><h3 class="sub">'+g[0]+'</h3><div class="tiles" data-reveal="stagger">'+g[1].map(t=>
-  '<div class="tile" data-tip="'+t[2]+'"><div class="box">'+t[1]+'</div><div class="name">'+t[0]+'</div></div>').join('')+'</div></div>').join('');
+  '<div class="tile" tabindex="0" role="img" aria-label="'+esc(t[0]+', '+t[2])+'" data-tip="'+esc((t[3]?'<b>'+t[0]+'</b><br>':'')+t[2])+'"><div class="box">'+icon(t[1])+'</div><div class="name">'+esc(t[3]||t[0])+'</div></div>').join('')+'</div></div>').join('');
 $('#pills').innerHTML=concepts.map(t=>'<span class="pill">'+t+'</span>').join('');
 $('#connect').innerHTML=links.map(l=>'<a href="'+l[3]+'" target="_blank" rel="noopener" class="clink lit" data-magnet><span class="ic">'+l[0]+'</span><span class="tx2">'+l[2]+'</span><span class="go">&#8599;</span></a>').join('')
   +'<button type="button" id="copy" class="clink lit" data-magnet><span class="ic">@</span><span class="tx2">'+MAIL.replace('@','@<wbr>')+'</span><span class="go" aria-live="polite">copy</span></button>'

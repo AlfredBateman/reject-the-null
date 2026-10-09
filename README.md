@@ -14,3 +14,7 @@ Ishan Sharma's portfolio: a static, no-build site animated with anime.js.
 **Data refresh:** the workflow runs daily (03:17 UTC), on push to `main`, and manually; it re-fetches GitHub data before each deploy.
 
 **Local preview:** `python3 -m http.server 8000`
+
+**Icons:** Phosphor Icons (MIT), inlined into `js/icons.js`; the license ships in `assets/icons/PHOSPHOR-LICENSE.txt`.
+
+**Adding a skill:** add its icon name to `scripts/icon-names.txt`, run `node scripts/build-icons.mjs`, then add the line to `js/content.js`.

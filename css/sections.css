@@ -98,20 +98,35 @@
 
 /* stack */
 .group{margin-bottom:clamp(30px,5vw,52px)}
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,128px));gap:22px 18px}
-.tile{position:relative;display:flex;flex-direction:column;gap:9px}
-.tile .box{position:relative;aspect-ratio:1;border:2px solid var(--ink);border-radius:16px;background:var(--card);display:grid;place-items:center;
-  font:700 clamp(1.4rem,3vw,1.9rem) var(--display);letter-spacing:-.04em;
+.tiles{display:flex;flex-wrap:wrap;gap:18px 14px}
+.tile{position:relative;flex:0 0 76px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.tile:focus-visible{outline:none}
+.tile:focus-visible .box{outline:3px solid var(--ink);outline-offset:3px}
+.tile .box{position:relative;width:56px;height:56px;border:2px solid var(--ink);border-radius:14px;background:var(--card);display:grid;place-items:center;
   transition:transform .4s cubic-bezier(.3,1.7,.5,1),background .25s,color .25s,border-color .25s,box-shadow .3s}
-.tile .box::after{content:"";position:absolute;left:20%;right:20%;bottom:15%;height:3px;border-radius:3px;background:var(--red);transition:left .35s,right .35s,background .25s}
-@media(hover:hover) and (pointer:fine){
-  .tile:hover .box{transform:translateY(-9px) rotate(-4deg);background:var(--red);color:var(--onred);border-color:var(--red);box-shadow:0 14px 0 -8px var(--line)}
-  .tile:hover .box::after{left:9%;right:9%;background:var(--onred)}
+.tile .box::after{content:"";position:absolute;left:30%;right:30%;bottom:6px;height:2px;border-radius:2px;background:var(--red);transition:left .35s,right .35s,background .25s}
+.ico{position:relative;width:28px;height:28px;margin-bottom:4px;transition:transform .3s cubic-bezier(.3,1.7,.5,1)}
+.ico svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity .15s}
+.ico .i-fill{opacity:0}
+/* hover look, mirrored for keyboard focus and for .on (set by the tooltip controller in js/ui.js, so a tap never leaves it stuck) */
+.tile:is(:focus-visible,.on) .box{transform:translateY(-6px) rotate(-4deg);background:var(--red);color:var(--onred);border-color:var(--red);box-shadow:0 10px 0 -6px var(--line)}
+.tile:is(:focus-visible,.on) .box::after{left:14%;right:14%;background:var(--onred)}
+.tile:is(:focus-visible,.on) .ico{transform:scale(1.12)}
+.tile:is(:focus-visible,.on) .i-reg{opacity:0}
+.tile:is(:focus-visible,.on) .i-fill{opacity:1}
+@media(hover:hover){
+  .tile:hover .box{transform:translateY(-6px) rotate(-4deg);background:var(--red);color:var(--onred);border-color:var(--red);box-shadow:0 10px 0 -6px var(--line)}
+  .tile:hover .box::after{left:14%;right:14%;background:var(--onred)}
+  .tile:hover .ico{transform:scale(1.12)}
+  .tile:hover .i-reg{opacity:0}
+  .tile:hover .i-fill{opacity:1}
 }
-.tile .name{font:500 12px var(--mono);overflow-wrap:anywhere}
-.tile::before{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 12px);transform:translate(-50%,6px);opacity:0;pointer-events:none;width:max-content;max-width:min(240px,80vw);text-align:center;
-  background:var(--ink);color:var(--paper);font:500 11px var(--mono);padding:4px 9px;border-radius:6px;transition:opacity .2s,transform .25s;z-index:3}
-@media(hover:hover) and (pointer:fine){.tile:hover::before{opacity:1;transform:translate(-50%,0)}}.pills{display:flex;flex-wrap:wrap;gap:9px}
+/* reduced motion: no tilt, no pop; the colour change stays */
+@media(prefers-reduced-motion:reduce){.tile:is(:focus-visible,.on) .box{transform:translateY(-6px)}.tile .ico{transform:none!important}}
+@media(prefers-reduced-motion:reduce) and (hover:hover){.tile:hover .box{transform:translateY(-6px)}}
+.tile .name{font:500 11px/1.3 var(--mono);text-align:center;max-width:100%;overflow-wrap:anywhere;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+@media(max-width:479.98px){.tile .box{width:52px;height:52px}}
+.pills{display:flex;flex-wrap:wrap;gap:9px}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:99px;background:var(--card);border:1.5px solid var(--line);font:500 13px var(--display);
   transition:border-color .25s,transform .35s cubic-bezier(.3,1.6,.5,1),background .25s}
 .pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
@@ -233,7 +248,7 @@
 .legend{display:flex;align-items:center;gap:4px}
 .legend i{width:12px;height:12px;border-radius:3px;display:block}
 .tt{position:fixed;left:0;top:0;pointer-events:none;z-index:300;background:var(--ink);color:var(--paper);font:500 11px var(--mono);padding:6px 10px;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity .12s}
-.tt.wrap{white-space:normal;max-width:min(240px,calc(100vw - 16px));text-align:center}
+.tt.wrap{white-space:normal;max-width:min(280px,calc(100vw - 16px));text-align:center}
 .langs{margin-top:clamp(22px,3vw,34px)}
 .langbar{display:flex;height:16px;gap:3px;border-radius:99px;overflow:hidden}
 .seg{height:100%;transition:transform .3s cubic-bezier(.3,1.6,.5,1),opacity .25s}

@@ -1,4 +1,5 @@
 import {$,FINE,renderStats,renderGraph,renderLangs,renderRepos,renderEvents} from './render.js';
+import {showTip,hideTip} from './ui.js';
 
 /* Loads the build-time snapshot (scripts/fetch-github.mjs). No token, no numbers made up here. */
 export async function github(){
@@ -46,12 +47,10 @@ function analyse(days){
 /* mouse only; touch taps go through js/ui.js */
 function tooltip(){
   if(!FINE)return;
-  const tt=$('#tt');
+  let last=null;
   document.addEventListener('pointermove',e=>{
     const c=e.target.closest&&e.target.closest('.cell');
-    if(!c){tt.style.opacity=0;return}
-    tt.innerHTML=c.dataset.t;tt.style.opacity=1;
-    const w=tt.offsetWidth,x=Math.min(Math.max(e.clientX-w/2,8),innerWidth-w-8);
-    tt.style.transform='translate('+x+'px,'+(e.clientY-42)+'px)';
+    if(c){last=c;showTip(c,c.dataset.t,e.clientX,e.clientY)}
+    else if(last){hideTip(last);last=null}
   },{passive:true});
 }
